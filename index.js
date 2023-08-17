@@ -1,21 +1,18 @@
-function queueTime(customers, numTills) {
-  const tills = new Array(numTills).fill(0);
-  let currentTime = 0;
-
-  while (customers.length > 0) {
-    for (let i = 0; i < numTills; i++) {
-      if (tills[i] <= currentTime && customers.length > 0) {
-        const checkoutTime = customers.shift();
-        tills[i] = currentTime + checkoutTime;
-      }
-    }
-    currentTime++;
+function generateHashtag (str) {
+  if (str. trim() === '') {
+    return false; // Return false for empty strings
   }
-  let max_time = 0;
 
-  tills.forEach( element => {if (element > max_time) max_time = element});
+  // Split camel case string into individual words
+  const words = str.split(/(?=[A-Z])/);
 
-  return max_time;
+  // Remove special characters and join words with camel case
+  const cleanedWords = words.map(word => word.replace(/[^a-zA-Z0-9]/g, ''));
+  
+  const hashtag = '#' + cleanedWords[0].toUpperCase() + cleanedWords.slice(1).join('');
+  
+  return hashtag;
 }
 
-console.log(queueTime([10,2,3,3], 2) == 10 ? 'Passed':'Failed');
+
+console.log(generateHashtag("Do We have A Hashtag") == "#DoWeHaveAHashtag" ? 'Passed':'Failed');
