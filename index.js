@@ -1,25 +1,13 @@
-function generateHashtag (str) {
-  if (str.trim() === '') {
-    return false; // Return false for empty strings
-  }
-
-  // Split input string into individual words
-  const words = str.split(/\s+/);
-
-  // Remove special characters and join words with camel case
-  const cleanedWords = words.map(word => word.replace(/[^a-zA-Z0-9]/g, ''));
-
-  // Prepend '#' and join the cleaned words with camel case structure
-  const hashtag = '#' + cleanedWords.map((word, index) => {
-    return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
-  }).join('');
-
-  if (hashtag.length > 140) {
-    return false; // Return false if hashtag is too long
-  }
-
-  return hashtag;
+function fibonacci(n) {
+  if(n==0 || n == 1)
+      return n;
+  return fibonacci(n-1) + fibonacci(n-2);
 }
 
+const n = 10;
 
-console.log(generateHashtag("Do We have A Hashtag") == "#DoWeHaveAHashtag" ? 'Passed':'Failed');
+console.time('fibo');
+
+console.log(fibonacci(n));
+
+console.timeEnd('fibo');
