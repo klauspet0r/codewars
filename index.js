@@ -17,7 +17,7 @@ function findOdd(A) {
 
     for (const [key, value] of numberMap) 
     {
-      if (value == 1)
+      if (value%2 != 0)
       {
         retVal = key;      
       }
