@@ -1,24 +1,24 @@
-const memo = {};
-
-function fibonacci(n) {
-  if (n <= 1) {
-    return n;
+function isIsogram(str){
+  //create a map of all letters and count occurances, if any occurance above 1 then no isogram
+  let letterMap = new Map();
+  let isIsogram = true;  
+  [...str].forEach((e) => 
+  {     
+        e = e.toLowerCase();
+        if (letterMap.has(e.toString()))
+        {
+            isIsogram = false;
+            return isIsogram;
+        } 
+        else
+        {
+          letterMap.set(e, 1);
+        }
   }
-
-  // Check if the result is already memoized
-  if (memo[n] !== undefined) {
-    return memo[n];
-  }
-
-  // Calculate and memoize the result
-  memo[n] = fibonacci(n - 1) + fibonacci(n - 2);
-  return memo[n];
+      
+  )
+  return isIsogram;
 }
 
-const n = 10;
 
-console.time('fibo');
-
-console.log(fibonacci(n));
-
-console.timeEnd('fibo');
+console.log(isIsogram('abcd'));
