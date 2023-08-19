@@ -1,24 +1,29 @@
-function isIsogram(str){
-  //create a map of all letters and count occurances, if any occurance above 1 then no isogram
-  let letterMap = new Map();
-  let isIsogram = true;  
-  [...str].forEach((e) => 
-  {     
-        e = e.toLowerCase();
-        if (letterMap.has(e.toString()))
+function findOdd(A) {
+  let numberMap = new Map();
+
+  A.forEach(e => 
+    {
+      if (numberMap.has(e))
         {
-            isIsogram = false;
-            return isIsogram;
+           numberMap.set(e, numberMap.get(e) + 1)
         } 
         else
         {
-          letterMap.set(e, 1);
+          numberMap.set(e, 1);
         }
-  }
-      
-  )
-  return isIsogram;
+    });
+  
+    let retVal;
+
+    for (const [key, value] of numberMap) 
+    {
+      if (value == 1)
+      {
+        retVal = key;      
+      }
+    }
+  return retVal;
 }
 
 
-console.log(isIsogram('abcd'));
+console.log(findOdd([1,1,4, 2, 2]) == 4 ? 'Passed' : 'Failed');
